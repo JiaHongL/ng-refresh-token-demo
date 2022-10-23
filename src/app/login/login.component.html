@@ -1,0 +1,68 @@
+<div class="relative bg-cover bg-center bg-no-repeat bg-gradient-to-b from-blue-500 to-blue-400 opacity-75">
+  <div class="z-50 mx-0 min-h-screen justify-center sm:flex sm:flex-row">
+    <div class="z-10 flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
+      <div class="hidden flex-col self-start text-white lg:flex">
+        <img src="" class="mb-3" />
+        <h1 class="mb-3 text-5xl font-bold">Hi ? Welcome Back !</h1>
+        <p class="pr-3">
+          Lorem ipsum is placeholder text commonly used in the graphic, print,
+          and publishing industries for previewing layouts and visual mockups
+        </p>
+      </div>
+    </div>
+    <div class="z-10 flex justify-center self-center">
+      <div class="w-100 mx-auto rounded-2xl bg-white p-12">
+        <div class="mb-4">
+          <h3 class="text-2xl font-semibold text-gray-800">Sign In</h3>
+          <p class="text-gray-500">Please sign in to your account.</p>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <div class="space-y-5">
+            <div class="space-y-2">
+              <label class="text-sm font-medium tracking-wide text-gray-700"
+                >UserName</label
+              >
+              <input
+                formControlName="username"
+                class="w-full rounded-lg border border-gray-300 px-4 py-2 text-base focus:border-blue-400 focus:outline-none"
+                type="text"
+                placeholder="Enter your username"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="mb-5 text-sm font-medium tracking-wide text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                formControlName="password"
+                class="w-full content-center rounded-lg border border-gray-300 px-4 py-2 text-base focus:border-blue-400 focus:outline-none"
+                type="password"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="flex w-full cursor-pointer justify-center rounded-full bg-blue-400 p-3 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-500 ease-in hover:bg-blue-500"
+              >
+                Sign in
+              </button>
+            </div>
+            <hr />
+            <div>
+              <button
+                (click)="createAccount()"
+                type="button"
+                class="flex w-full cursor-pointer justify-center rounded-full bg-green-400 p-3 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-500 ease-in hover:bg-green-500"
+              >
+                Create New Account
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
