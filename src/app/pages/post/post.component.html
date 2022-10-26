@@ -1,8 +1,8 @@
 <h1 class="my-3 font-bold text-center text-4xl">
-  {{ posts.title }}
+  {{ post.title }}
 </h1>
 
-<p [innerText]="posts.body"></p>
+<p [innerText]="post.body"></p>
 
 <div class="flex justify-end">
   <div class="mx-3 mt-2 flex flex-row px-2 py-3">
@@ -10,12 +10,12 @@
       <img
         class="h-12 w-12 rounded-full object-cover shadow"
         alt="User avatar"
-        src="{{ posts.user?.avatar }}"
+        src="{{ post.user?.avatar }}"
       />
     </div>
     <div class="mb-2 ml-4 mt-1 flex flex-col">
       <div class="text-sm font-semibold text-gray-600">
-        {{ posts.user?.username }}
+        {{ post.user?.username }}
       </div>
       <div class="mt-1 flex w-full">
         <div class="text-xs font-thin text-gray-400">

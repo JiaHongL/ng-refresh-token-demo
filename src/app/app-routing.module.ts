@@ -5,7 +5,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 
 import { HomeComponent } from './pages/home/home.component';
-import { PostsComponent } from './pages/posts/posts.component';
+import { PostComponent } from './pages/post/post.component';
 
 const routes: Routes = [
   {
@@ -21,10 +21,10 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'posts/:id',
-        component: PostsComponent,
+        path: 'post/:id',
+        component: PostComponent,
       },
-    ]
+    ],
   },
   { path: '**', pathMatch: 'full', redirectTo: 'login' },
 ];

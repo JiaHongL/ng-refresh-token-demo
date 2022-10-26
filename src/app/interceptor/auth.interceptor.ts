@@ -51,6 +51,13 @@ export class AuthInterceptor implements HttpInterceptor {
           return this.handle401Error(request, next);
         }
 
+        if (
+          error instanceof HttpErrorResponse &&
+          error.status === 403
+        ) {
+          this.handle403Error();
+        }
+
         return throwError(() => error);
 
       })
@@ -74,12 +81,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
             this.isRefreshing = false;
 
-            window.localStorage.setItem('accessToken', res.accessToken);
-            window.localStorage.setItem('refreshToken', res.refreshToken);
+            const newAccessToken = res.data.accessToken;
+            const newRefreshToken = res.data.refreshToken;
 
-            this.refreshTokenSubject.next(res.accessToken);
+            window.localStorage.setItem('accessToken', newAccessToken);
+            window.localStorage.setItem('refreshToken', newRefreshToken);
 
-            return next.handle(this.addTokenHeader(request, res.accessToken));
+            this.refreshTokenSubject.next(newAccessToken);
+
+            return next.handle(this.addTokenHeader(request, newAccessToken));
 
           }),
           catchError((error: any) => {

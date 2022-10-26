@@ -1,16 +1,16 @@
-import { CommentsService } from './../../services/comments/comments.service';
-import { PostsService } from './../../services/posts/posts.service';
+import { CommentsService } from '../../services/comments/comments.service';
+import { PostsService } from '../../services/posts/posts.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap } from 'rxjs';
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss'],
 })
-export class PostsComponent implements OnInit {
-  posts: {
+export class PostComponent implements OnInit {
+  post: {
     body?: string;
     cover?: string;
     id?: number;
@@ -47,11 +47,11 @@ export class PostsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id') as string;
 
     this.postsService
-      .getPostsDetail(id)
+      .getPostDetail(id)
       .pipe(
         mergeMap((res) => {
-          this.posts = res.data;
-          return this.commentsService.getComments(this.posts.postId!);
+          this.post = res.data;
+          return this.commentsService.getComments(this.post.postId!);
         })
       )
       .subscribe({

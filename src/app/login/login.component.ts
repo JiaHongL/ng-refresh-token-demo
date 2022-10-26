@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(params).subscribe({
       next: (res) => {
-        window.localStorage.setItem('accessToken', res.accessToken);
-        window.localStorage.setItem('refreshToken', res.refreshToken);
+        window.localStorage.setItem('accessToken', res.data.accessToken);
+        window.localStorage.setItem('refreshToken', res.data.refreshToken);
 
         this.router.navigateByUrl('home');
       },

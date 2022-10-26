@@ -8,7 +8,7 @@ import { PostsService } from './../../services/posts/posts.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  postsList: {
+  postList: {
     title: string;
     body: string;
     id: number;
@@ -26,12 +26,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.postsService.getPosts().subscribe({
       next: (res) => {
-        this.postsList = res.data;
+        this.postList = res.data;
       },
     });
   }
 
   goToDetail(id: number) {
-    this.router.navigate(['posts', id]);
+    this.router.navigate(['post', id]);
   }
 }

@@ -13,14 +13,14 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 
 import { HomeComponent } from './pages/home/home.component';
-import { PostsComponent } from './pages/posts/posts.component';
+import { PostComponent } from './pages/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    PostsComponent,
+    PostComponent,
     NavbarComponent,
     LayoutComponent,
   ],

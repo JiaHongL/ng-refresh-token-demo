@@ -14,7 +14,7 @@ export class PostsService {
     return this.http.get<any>(this.api);
   }
 
-  getPostsDetail(postId: string) {
+  getPostDetail(postId: string) {
     return this.http.get<any>(this.api + '/' + postId);
   }
 
