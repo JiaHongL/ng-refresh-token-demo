@@ -1,8 +1,10 @@
-import { Router } from '@angular/router';
-import { UserService } from './../../services/user/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserService } from './../../services/user/user.service';
 import { CategoriesService } from './../../services/categories/categories.service';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+
+import { UserInfoDto } from './../../models/user-info.dto';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +12,10 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
   categories: string[] = [];
 
-  profile: {
-    userId?: number;
-    username?: string;
-    avatar?: string;
-  } = {};
+  profile!: UserInfoDto | null;
 
   constructor(
     private categoriesService: CategoriesService,
@@ -25,6 +24,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.categoriesService.getCategories().subscribe({
       next: (res) => {
         this.categories = res.data;
@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
         this.profile = res.data;
       },
     });
+
   }
 
   logout(): void {
@@ -50,4 +51,5 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
+
 }

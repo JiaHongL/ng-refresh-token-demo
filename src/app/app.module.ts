@@ -30,7 +30,7 @@ import { PostComponent } from './pages/post/post.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },
+    }
   ],
   bootstrap: [AppComponent],
 })

@@ -13,7 +13,7 @@
     <div class="dropdown-end dropdown">
       <label tabindex="0" class="btn-ghost btn-circle online avatar btn">
         <div class="w-10 rounded-full">
-          <img src="{{ profile.avatar }}" />
+          <img src="{{ profile?.avatar }}" />
         </div>
       </label>
       <ul
@@ -24,11 +24,11 @@
           <a class="justify-start">
             <label tabindex="0" class="btn-ghost btn-circle avatar btn">
               <div class="w-10 rounded-full">
-                <img src="{{ profile.avatar }}" />
+                <img src="{{ profile?.avatar }}" />
               </div>
             </label>
             <div class="text-xl">
-              {{ profile.username }}
+              {{ profile?.username }}
             </div>
           </a>
         </li>

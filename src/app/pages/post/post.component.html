@@ -10,12 +10,12 @@
       <img
         class="h-12 w-12 rounded-full object-cover shadow"
         alt="User avatar"
-        src="{{ post.user?.avatar }}"
+        src="{{ post.user.avatar }}"
       />
     </div>
     <div class="mb-2 ml-4 mt-1 flex flex-col">
       <div class="text-sm font-semibold text-gray-600">
-        {{ post.user?.username }}
+        {{ post.user.username }}
       </div>
       <div class="mt-1 flex w-full">
         <div class="text-xs font-thin text-gray-400">
@@ -37,7 +37,7 @@
         <div class="flex justify-center items-center flex-shrink-0">
           <img
             class="h-8 w-8 rounded-full sm:h-10 sm:w-10"
-            src="{{ comment.user?.avatar }}"
+            src="{{ comment.user.avatar }}"
             alt=""
           />
         </div>
@@ -45,7 +45,7 @@
           class="flex-1 rounded-lg border px-4 py-2 leading-relaxed sm:px-6 sm:py-4"
         >
           <strong>{{
-            comment.user?.username
+            comment.user.username
           }}</strong>
           <p class="text-sm">
             {{

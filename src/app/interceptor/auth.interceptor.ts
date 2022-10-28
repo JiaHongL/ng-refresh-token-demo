@@ -40,12 +40,14 @@ export class AuthInterceptor implements HttpInterceptor {
       request = this.addTokenHeader(request, accessToken);
     }
 
-    return next.handle(request).pipe(
+    return next.handle(request)
+    .pipe(
       catchError((error) => {
 
         if (
           error instanceof HttpErrorResponse &&
           !request.url.includes('/login') &&
+          !this.isRefreshing &&
           error.status === 401
         ) {
           return this.handle401Error(request, next);
@@ -55,7 +57,7 @@ export class AuthInterceptor implements HttpInterceptor {
           error instanceof HttpErrorResponse &&
           error.status === 403
         ) {
-          this.handle403Error();
+          this.logout();
         }
 
         return throwError(() => error);
@@ -72,11 +74,11 @@ export class AuthInterceptor implements HttpInterceptor {
       this.refreshTokenSubject.next(null);
 
       const accessToken = window.localStorage.getItem('accessToken');
-      const refreshToken = window.localStorage.getItem('refreshToken');
+      const refreshToken = window.localStorage.getItem('refreshToken') ;
 
       if (accessToken && refreshToken) {
 
-        return this.authService.refreshToken(refreshToken).pipe(
+        return this.authService.refreshToken(refreshToken+1).pipe(
           switchMap((res: any) => {
 
             this.isRefreshing = false;
@@ -97,8 +99,10 @@ export class AuthInterceptor implements HttpInterceptor {
             this.isRefreshing = false;
 
             if (error.status === 403) {
-              this.handle403Error();
+              this.logout();
             }
+
+            alert(error.error.message);
 
             return throwError(() => error);
 
@@ -117,7 +121,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
 
-  private handle403Error() {
+  private logout() {
     window.localStorage.clear();
     this.router.navigateByUrl('/login');
   }

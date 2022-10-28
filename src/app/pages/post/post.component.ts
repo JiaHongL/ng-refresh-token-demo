@@ -1,41 +1,23 @@
-import { CommentsService } from '../../services/comments/comments.service';
-import { PostsService } from '../../services/posts/posts.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap } from 'rxjs';
 
+import { CommentsService } from '../../services/comments/comments.service';
+import { PostsService } from '../../services/posts/posts.service';
+
+import { PostItemDetailDto } from 'src/app/models/post-item-detail.dto';
+import { CommentDto } from './../../models/comment.dto';
+
+import { mergeMap } from 'rxjs';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
-  post: {
-    body?: string;
-    cover?: string;
-    id?: number;
-    postId?: number;
-    reactions?: number;
-    tags?: string[];
-    title?: string;
-    user?: {
-      id: number;
-      username: string;
-      avatar: string;
-    };
-    userId?: number;
-  } = {};
 
-  comments:{
-    id?: number;
-    postId?:number;
-    body?:string;
-    user?: {
-      id: number;
-      username: string;
-      avatar: string;
-    };
-  }[] = [];
+  post!:PostItemDetailDto;
+
+  comments:CommentDto[] = [];
 
   constructor(
     private route: ActivatedRoute,

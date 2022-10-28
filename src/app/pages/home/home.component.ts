@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
 import { PostsService } from './../../services/posts/posts.service';
+import { PostItemDto } from 'src/app/models/post-item.dto';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +10,7 @@ import { PostsService } from './../../services/posts/posts.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  postList: {
-    title: string;
-    body: string;
-    id: number;
-    tag: string[];
-    cover: string;
-    user: {
-      id: number;
-      username: string;
-      avatar: string;
-    };
-  }[] = [];
+  postList: PostItemDto[] = [];
 
   constructor(private postsService: PostsService, private router: Router) {}
 
