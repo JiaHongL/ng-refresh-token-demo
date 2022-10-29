@@ -13,6 +13,7 @@ import { AuthService } from './../services/auth/auth.service';
 import {
   BehaviorSubject,
   catchError,
+  EMPTY,
   filter,
   Observable,
   switchMap,
@@ -57,7 +58,8 @@ export class AuthInterceptor implements HttpInterceptor {
           error instanceof HttpErrorResponse &&
           error.status === 403
         ) {
-          this.logout();
+          this.logout(error.error.message);
+          return EMPTY;
         }
 
         return throwError(() => error);
@@ -78,7 +80,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
       if (accessToken && refreshToken) {
 
-        return this.authService.refreshToken(refreshToken).pipe(
+        return this.authService.refreshToken(refreshToken+1).pipe(
           switchMap((res: any) => {
 
             this.isRefreshing = false;
@@ -117,7 +119,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
 
-  private logout() {
+  private logout(errorMessage:string) {
+    alert(errorMessage);
     window.localStorage.clear();
     this.router.navigateByUrl('/login');
   }
