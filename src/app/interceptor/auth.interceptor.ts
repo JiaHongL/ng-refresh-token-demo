@@ -58,7 +58,7 @@ export class AuthInterceptor implements HttpInterceptor {
           error instanceof HttpErrorResponse &&
           error.status === 403
         ) {
-          this.logout(error.error.message);
+          this.logout();
           return EMPTY;
         }
 
@@ -119,8 +119,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
 
-  private logout(errorMessage:string) {
-    alert(errorMessage);
+  private logout() {
     window.localStorage.clear();
     this.router.navigateByUrl('/login');
   }
