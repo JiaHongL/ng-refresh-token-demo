@@ -98,10 +98,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
             this.isRefreshing = false;
 
-            if (error.status === 403) {
-              this.logout();
-            }
-
             alert(error.error.message);
 
             return throwError(() => error);
