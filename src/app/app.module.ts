@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PostComponent } from './pages/post/post.component';
 
+import { TestInterceptor } from './interceptor/test.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +30,14 @@ import { PostComponent } from './pages/post/post.component';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: TestInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })
