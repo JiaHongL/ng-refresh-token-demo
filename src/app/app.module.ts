@@ -25,6 +25,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 
 import { testInterceptorFn } from './interceptor/test.interceptor.fn';
 import { authInterceptorFn } from './interceptor/auth.interceptor.fn';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { authInterceptorFn } from './interceptor/auth.interceptor.fn';
     HttpClientModule,
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TestInterceptor,
